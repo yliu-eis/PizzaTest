@@ -2,6 +2,7 @@ package com.ebsco.designingtests;
 
 import java.util.List;
 
+
 public interface Pizza {
 
     List<Topping> getToppings();
@@ -9,8 +10,6 @@ public interface Pizza {
     Dough getDough();
 
     Sauce getSauce();
-
-    int getSize();
 
     int getPrice();
 

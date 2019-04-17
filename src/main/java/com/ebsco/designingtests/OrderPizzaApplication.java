@@ -10,10 +10,11 @@ import java.util.Map;
 public class OrderPizzaApplication {
 
     public static void main(String[] args) {
-        Iterator<String> it = Arrays.stream(args).iterator();
-        Map<String, String> flags = new HashMap<>();
+        final Iterator<String> it = Arrays.stream(args).iterator();
+        final Map<String, String> flags = new HashMap<>();
+
         while (it.hasNext()) {
-            String flag = it.next();
+            final String flag = it.next();
             if(flag.startsWith("-")) {
                 flags.put(flag.substring(1), it.next());
             }
@@ -25,6 +26,7 @@ public class OrderPizzaApplication {
         Integer size = null;
 
         for(Map.Entry<String, String> e : flags.entrySet()) {
+
             switch (e.getKey()) {
                 case "t":
                     toppings.add(new ToppingImpl(Side.ENTIRE, ToppingType.valueOf(e.getValue())));
@@ -40,6 +42,7 @@ public class OrderPizzaApplication {
                     break;
 
             }
+
         }
 
         Pizza pizza = new PizzaImpl(toppings, dough, sauce, size);

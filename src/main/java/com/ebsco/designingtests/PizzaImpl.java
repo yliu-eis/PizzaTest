@@ -2,7 +2,8 @@ package com.ebsco.designingtests;
 
 import java.util.List;
 
-public class PizzaImpl implements Pizza {
+public class PizzaImpl implements SizedPizza {
+
     private final List<Topping> toppings;
     private final Dough dough;
     private final Sauce sauce;
@@ -15,22 +16,27 @@ public class PizzaImpl implements Pizza {
         this.size = size;
     }
 
+    @Override
     public List<Topping> getToppings() {
         return toppings;
     }
 
+    @Override
     public Dough getDough() {
         return dough;
     }
 
+    @Override
     public Sauce getSauce() {
         return sauce;
     }
 
+    @Override
     public int getSize() {
         return size;
     }
 
+    @Override
     public int getPrice() {
         switch (size) {
             case 9:
