@@ -25,7 +25,7 @@ public class ToppingImpl implements Topping {//implements call Topping
 
     @Override
     public String toString() {
-        return toppingType.name();
+        return toppingType.name() + ":" + side;
     }//.name() works for enum
 
     @Override
