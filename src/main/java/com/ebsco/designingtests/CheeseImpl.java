@@ -1,18 +1,26 @@
 package com.ebsco.designingtests;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
-public class ToppingImpl implements Topping {//implements call Topping
+public class CheeseImpl implements Topping {//implements call Topping
     //what is the purpose of implements Topping here?
 
     private final Side side;
     private final ToppingType toppingType;
+    private static final List<ToppingType> allowedCheeses =
+            Arrays.asList(ToppingType.MOZZAERELLA, ToppingType.PROVOLONE);
 
-    public ToppingImpl(Side side, ToppingType toppingType) {
+    public CheeseImpl(Side side, ToppingType toppingType) {
         this.side = side;
-        this.toppingType = toppingType;
-    }
 
+        if(!allowedCheeses.contains(toppingType)) {
+            this.toppingType = ToppingType.MOZZAERELLA;
+        } else {
+            this.toppingType = toppingType;
+        }
+    }
     @Override
     public Side getSide() {
         return side;
@@ -32,7 +40,7 @@ public class ToppingImpl implements Topping {//implements call Topping
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ToppingImpl topping = (ToppingImpl) o;
+        CheeseImpl topping = (CheeseImpl) o;
         return side == topping.side &&
                 toppingType == topping.toppingType;
     }

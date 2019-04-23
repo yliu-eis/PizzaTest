@@ -17,7 +17,7 @@ public class PizzaImpl implements SizedPizza {
     }
 
     @Override
-    public List<Topping> getToppings() {
+    public List<Topping> getToppings() {//followed Topping in interface Pizza
         return toppings;
     }
 
@@ -45,13 +45,14 @@ public class PizzaImpl implements SizedPizza {
                 return 15;
             case 15:
                 return 20;
+            default:
+                return (size/3)*5;
         }
-        return -1;
     }
 
     @Override
     public String toString() {
         return "Dough: " + dough.name() + " Sauce: " + sauce.name() + " Size: " + size
-            + " Price: $" + getPrice() + " Toppings: " + toppings;
+                + " Price: $" + getPrice() + " Toppings: " + toppings;
     }
 }

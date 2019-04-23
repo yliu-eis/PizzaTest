@@ -3,7 +3,8 @@ package com.ebsco.designingtests;
 public enum ToppingType {
 
     PEPPERONI,
-    CHEESE,
+    MOZZAERELLA,
+    PROVOLONE,
     RANCH,
     MUSHROOM,
     BBQ_SAUCE,
@@ -12,5 +13,13 @@ public enum ToppingType {
     SAUSAGE,
     JELLO,
     CLAMS;
+
+    public static ToppingType getValue(String value) {
+        try{
+            return ToppingType.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
+    }
 
 }

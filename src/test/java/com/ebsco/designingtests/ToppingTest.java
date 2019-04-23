@@ -1,19 +1,21 @@
-import static org.junit.Assert.assertEquals;
+package com.ebsco.designingtests;
 
-import com.ebsco.designingtests.Side;
-import com.ebsco.designingtests.Topping;
-import com.ebsco.designingtests.ToppingImpl;
-import com.ebsco.designingtests.ToppingType;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class ToppingTest {
 
     @Test
     public void testTopping(){
         for(Side side : Side.values()) {
+            int j=1;
             for(ToppingType type : ToppingType.values()) {
                 Topping topping = new ToppingImpl(side, type);
-                assertEquals(side, topping.getSide());
+                //why use "Topping" from Interface here?
+                System.out.println(topping);
+                System.out.println(j+1);
+                assertEquals(side, topping.getSide());//cause we need Topping here
                 assertEquals(type, topping.getType());
             }
         }

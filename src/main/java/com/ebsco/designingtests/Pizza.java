@@ -3,7 +3,7 @@ package com.ebsco.designingtests;
 import java.util.List;
 
 
-public interface Pizza {
+public interface Pizza extends Harold {
 
     List<Topping> getToppings();
 
