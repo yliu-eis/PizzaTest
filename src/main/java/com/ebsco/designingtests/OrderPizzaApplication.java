@@ -9,10 +9,13 @@ import java.util.Map;
 
 public class OrderPizzaApplication {
 
+    private Topping k;
+
     public static void main(String[] args) {
         Pizza pizza = deliverPizza(args);
         System.out.println(pizza);
     }
+
     public static Pizza deliverPizza(String[] args) {
         final Iterator<String> it = Arrays.stream(args).iterator();
         final Map<String, String> flags = new HashMap<>();
@@ -29,7 +32,7 @@ public class OrderPizzaApplication {
         Dough dough = Dough.WHITE;
         Sauce sauce = Sauce.MARINARA;
         Integer size = 9;
-        Side side=Side.ENTIRE;
+        Side side = Side.ENTIRE;
 
         for (Map.Entry<String, String> e : flags.entrySet()) {
 
@@ -69,11 +72,27 @@ public class OrderPizzaApplication {
                         // We don't need any code here.
                     }
                     break;
-
+                default:
+                    System.out.println("Not the correct input");
+                    break;
             }
 
         }
 
+        for (Topping k : new ArrayList<>(toppings)) {
+            for (Topping j : new ArrayList<>(toppings)) {
+                if (k == j || k.getType() != j.getType()) continue;
+
+                if (k.getSide() == j.getSide() || k.getSide() == Side.ENTIRE) {
+                    toppings.remove(k);
+                } else if (k.getSide() != Side.ENTIRE && j.getSide() != Side.ENTIRE) {
+                    toppings.remove(k);
+                    toppings.remove(j);
+                    toppings.add(new ToppingImpl(Side.ENTIRE, k.getType()));
+                }
+
+            }
+        }
         return new PizzaImpl(toppings, dough, sauce, size);
     }
 }

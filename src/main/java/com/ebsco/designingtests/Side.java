@@ -9,14 +9,14 @@ public enum Side {
     ENTIRE;
 
     public static Side getValue(String value) {
-        try{
+        try {
             return Side.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException ex) {
             return null;
         }
     }
 
-    public List<Topping> getTopping(String toppings){
+    public List<Topping> getTopping(String toppings) {
         List<Topping> toppingsList = new ArrayList<>();
         String[] toppArray = toppings.split(",");
         for (String t : toppArray) {

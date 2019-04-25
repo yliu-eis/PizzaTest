@@ -15,12 +15,13 @@ public class CheeseImpl implements Topping {//implements call Topping
     public CheeseImpl(Side side, ToppingType toppingType) {
         this.side = side;
 
-        if(!allowedCheeses.contains(toppingType)) {
+        if (!allowedCheeses.contains(toppingType)) {
             this.toppingType = ToppingType.MOZZAERELLA;
         } else {
             this.toppingType = toppingType;
         }
     }
+
     @Override
     public Side getSide() {
         return side;

@@ -7,7 +7,7 @@ public enum Sauce {
 
 
     public static Sauce getValue(String value) {
-        try{
+        try {
             return Sauce.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException ex) {
             return null;

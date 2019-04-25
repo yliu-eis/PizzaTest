@@ -15,7 +15,7 @@ public enum ToppingType {
     CLAMS;
 
     public static ToppingType getValue(String value) {
-        try{
+        try {
             return ToppingType.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException ex) {
             return null;

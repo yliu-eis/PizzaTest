@@ -7,7 +7,7 @@ public enum Dough {
     WHOLE_WHEAT;
 
     public static Dough getValue(String value) {
-        try{
+        try {
             return Dough.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException ex) {
             return null;
