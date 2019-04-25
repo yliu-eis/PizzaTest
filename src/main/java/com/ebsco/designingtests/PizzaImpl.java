@@ -46,7 +46,7 @@ public class PizzaImpl implements SizedPizza {
             case 15:
                 return 20;
             default:
-                return (size/3)*5;
+                return (size / 3) * 5;
         }
     }
 
