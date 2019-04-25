@@ -91,14 +91,39 @@ public class PizzaDeliveryIntegrationTests {
         assertEquals(9, ((SizedPizza) pizza).getSize());
     }
     @Test
-    public void testDelivery_not_valid_key(){
+    public void testDelivery_pizza_not_valid_key(){
         Pizza pizza = OrderPizzaApplication.deliverPizza(new String[]{"-..","RANCH, PEPPERONI","-right","MUSHROOM","-entire","BBQ_CHICKEN"});
+
+        System.out.println(pizza.toString());//question about toString();
+        assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.RIGHT, ToppingType.MUSHROOM)));
+        assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.ENTIRE, ToppingType.BBQ_CHICKEN)));
+        assertEquals(Dough.WHITE, pizza.getDough());
+        assertEquals(Sauce.MARINARA, pizza.getSauce());
+        assertEquals(9, ((SizedPizza) pizza).getSize());
+    }
+    @Test
+    public void testDelivery_pizza_duplicates_topping_in_side(){
+        Pizza pizza = OrderPizzaApplication.deliverPizza(new String[]{"-left","RANCH, RANCH, PEPPERONI","-right","MUSHROOM","-entire","BBQ_CHICKEN"});
 
         System.out.println(pizza.toString());//question about toString();
         assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.LEFT, ToppingType.RANCH)));
         assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.LEFT, ToppingType.PEPPERONI)));
         assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.RIGHT, ToppingType.MUSHROOM)));
         assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.ENTIRE, ToppingType.BBQ_CHICKEN)));
+        assertEquals(Dough.WHITE, pizza.getDough());
+        assertEquals(Sauce.MARINARA, pizza.getSauce());
+        assertEquals(9, ((SizedPizza) pizza).getSize());
+    }
+
+    @Test
+    public void testDelivery_pizza_duplicates_topping_across_sides(){
+        Pizza pizza = OrderPizzaApplication.deliverPizza(new String[]{"-left","RANCH, PEPPERONI","-right","RANCH, MUSHROOM","-entire","RANCH, BBQ_CHICKEN"});
+
+        System.out.println(pizza.toString());//question about toString();
+        assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.LEFT, ToppingType.PEPPERONI)));
+        assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.RIGHT, ToppingType.MUSHROOM)));
+        assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.ENTIRE, ToppingType.BBQ_CHICKEN)));
+        assertTrue(pizza.getToppings().contains(new ToppingImpl(Side.ENTIRE, ToppingType.RANCH)));
         assertEquals(Dough.WHITE, pizza.getDough());
         assertEquals(Sauce.MARINARA, pizza.getSauce());
         assertEquals(9, ((SizedPizza) pizza).getSize());
